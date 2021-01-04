@@ -1,5 +1,5 @@
 import React from "react";
-import "./style/Player.css";
+import "./style/player.css";
 
 const keyCode = {
   space: 32,
@@ -45,27 +45,31 @@ class Player extends React.Component {
     let i = 10;
     let g;
 
-    let timerId = setInterval(() => {
-      if (i >= -10) {
-        g = 1;
-        if (i < 0) {
-          g = -1;
-        }
-        this.setState({
-          //EQUAZIONE DEL MOTO PARABOLICO
-          y: this.state.y - i ** 2 * 0.5 * g,
-        });
-        console.log(this.state.y);
+    let timerId = setInterval(
+      () => {
+        if (i >= -10) {
+          g = 1;
+          if (i < 0) {
+            g = -1;
+          }
+          this.setState({
+            //EQUAZIONE DEL MOTO PARABOLICO
+            y: this.state.y - i ** 2 * 0.5 * g,
+          });
+          console.log(this.state.y);
 
-        i--;
-      } else {
-        this.setState({
-          isJumping: false,
-        });
-        i = 10;
-        clearInterval(timerId);
-      }
-    }, 10);
+          i--;
+        } else {
+          this.setState({
+            isJumping: false,
+          });
+          i = 10;
+          clearInterval(timerId);
+        }
+      },
+      //per cambiare velocità salto modificare tick animazione
+      20
+    );
     this.setState({
       isJumping: false,
     });
